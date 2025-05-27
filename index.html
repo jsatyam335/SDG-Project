@@ -1,56 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EduHelp - Learn Better</title>
-  <style>
-    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f4f4f4; }
-    header { background: #007bff; color: white; padding: 1rem; text-align: center; }
-    nav { background: #0056b3; display: flex; justify-content: center; padding: 0.5rem; }
-    nav a { color: white; margin: 0 1rem; text-decoration: none; }
-    .hero { text-align: center; padding: 2rem; background: #e9ecef; }
-    .subjects, .features, .footer { padding: 1.5rem; text-align: center; }
-    .subjects button { margin: 0.5rem; padding: 1rem; background: #007bff; color: white; border: none; border-radius: 8px; cursor: pointer; }
-    .features div { margin-top: 1rem; }
-    .footer { background: #333; color: white; }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EduHelp - Learn Smarter</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header>
     <h1>EduHelp</h1>
-    <p>Learning for Every Child, Everywhere</p>
+    <nav>
+      <button onclick="setLanguage('en')">English</button>
+      <button onclick="setLanguage('hi')">हिंदी</button>
+      <button onclick="setLanguage('mr')">मराठी</button>
+    </nav>
   </header>
 
-  <nav>
-    <a href="#">Home</a>
-    <a href="#subjects">Subjects</a>
-    <a href="#practice">Practice</a>
-    <a href="#doubt">Ask a Doubt</a>
-    <a href="#login">Login</a>
-  </nav>
+  <main>
+    <h2>Choose Your Subject</h2>
+    <div class="subjects">
+      <a href="math.html" class="subject-card">📐 Mathematics</a>
+      <a href="science.html" class="subject-card">🔬 Science</a>
+    </div>
+  </main>
 
-  <section class="hero">
-    <h2>Start Learning Now</h2>
-    <p>Access free, quality education content aligned with your school syllabus.</p>
-  </section>
+  <footer>
+    <p>© 2025 EduHelp | Bridging the Learning Gap</p>
+  </footer>
 
-  <section class="subjects" id="subjects">
-    <h3>Select a Subject</h3>
-    <button>Math</button>
-    <button>Science</button>
-    <button>English</button>
-  </section>
-
-  <section class="features">
-    <h3>Why EduHelp?</h3>
-    <div>✅ 100% Free and Accessible</div>
-    <div>✅ Based on NCERT Curriculum</div>
-  </section>
-
-  <section class="footer">
-    <p>Contact: support@eduhelp.in | Languages: English | Hindi | Marathi</p>
-    <p>&copy; 2025 EduHelp. All rights reserved.</p>
-  </section>
+  <script>
+    function setLanguage(lang) {
+      alert("Language changed to: " + lang);
+      // Optional: Load different content dynamically
+    }
+  </script>
 </body>
 </html>
+
