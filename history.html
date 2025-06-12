@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>History - EduHelp</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    #testPopup {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0,0,0,0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+
+    #testBox {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 400px;
+      width: 90%;
+    }
+
+    #testBox h2 {
+      margin-bottom: 15px;
+    }
+
+    #testBox input[type="radio"] {
+      margin-right: 8px;
+    }
+
+    #submitTest {
+      margin-top: 15px;
+      padding: 8px 12px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    #recommendation {
+      margin-top: 15px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>History</h1>
+    <nav>
+      <a href="index.html">⬅ Back to Subjects</a>
+    </nav>
+  </header>
+
+  <!-- POPUP TEST -->
+  <div id="testPopup">
+    <div id="testBox">
+      <h2>Quick History Assessment</h2>
+
+      <div>
+        <p>1. Who was the first Prime Minister of India?</p>
+        <input type="radio" name="q1" value="1" /> Jawaharlal Nehru<br />
+        <input type="radio" name="q1" value="0" /> Mahatma Gandhi<br />
+        <input type="radio" name="q1" value="0" /> Subhash Chandra Bose<br />
+      </div>
+
+      <div>
+        <p>2. In which year did India gain independence?</p>
+        <input type="radio" name="q2" value="0" /> 1945<br />
+        <input type="radio" name="q2" value="1" /> 1947<br />
+        <input type="radio" name="q2" value="0" /> 1950<br />
+      </div>
+
+      <div>
+        <p>3. Who wrote the Indian national anthem?</p>
+        <input type="radio" name="q3" value="1" /> Rabindranath Tagore<br />
+        <input type="radio" name="q3" value="0" /> B. R. Ambedkar<br />
+        <input type="radio" name="q3" value="0" /> Sarojini Naidu<br />
+      </div>
+
+      <button id="submitTest">Submit Test</button>
+      <p id="recommendation"></p>
+    </div>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <main>
+    <h2>Key History Concepts</h2>
+    <ul>
+      <li><strong>Indian Independence:</strong> India became free from British rule on August 15, 1947.</li>
+      <li><strong>Constitution of India:</strong> Came into effect on January 26, 1950.</li>
+      <li><strong>Important Leaders:</strong> Jawaharlal Nehru, Mahatma Gandhi, Bhagat Singh, Subhash Chandra Bose.</li>
+    </ul>
+  </main>
+
+  <footer>
+    <p>© 2025 EduHelp | History for All</p>
+  </footer>
+
+  <script>
+    const submitBtn = document.getElementById("submitTest");
+    const result = document.getElementById("recommendation");
+
+    submitBtn.addEventListener("click", function () {
+      let score = 0;
+      for (let i = 1; i <= 3; i++) {
+        const selected = document.querySelector(`input[name="q${i}"]:checked`);
+        if (selected) {
+          score += parseInt(selected.value);
+        }
+      }
+
+      let level = "";
+      if (score <= 1) level = "Beginner";
+      else if (score === 2) level = "Moderate";
+      else level = "Advanced";
+
+      result.innerText = `You scored ${score}/3. We recommend the ${level} Course.`;
+      setTimeout(() => {
+        document.getElementById("testPopup").style.display = "none";
+      }, 2500);
+    });
+  </script>
+</body>
+</html>
