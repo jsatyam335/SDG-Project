@@ -4,6 +4,49 @@
   <meta charset="UTF-8" />
   <title>Science - EduHelp</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    #testPopup {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0,0,0,0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+
+    #testBox {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 400px;
+      width: 90%;
+    }
+
+    #testBox h2 {
+      margin-bottom: 15px;
+    }
+
+    #testBox input[type="radio"] {
+      margin-right: 8px;
+    }
+
+    #submitTest {
+      margin-top: 15px;
+      padding: 8px 12px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    #recommendation {
+      margin-top: 15px;
+      font-weight: bold;
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -13,17 +56,74 @@
     </nav>
   </header>
 
+  <!-- POPUP TEST -->
+  <div id="testPopup">
+    <div id="testBox">
+      <h2>Quick Science Assessment</h2>
+
+      <div>
+        <p>1. What planet is known as the Red Planet?</p>
+        <input type="radio" name="q1" value="1" /> Mars<br />
+        <input type="radio" name="q1" value="0" /> Venus<br />
+        <input type="radio" name="q1" value="0" /> Jupiter<br />
+      </div>
+
+      <div>
+        <p>2. What is H<sub>2</sub>O commonly known as?</p>
+        <input type="radio" name="q2" value="0" /> Oxygen<br />
+        <input type="radio" name="q2" value="1" /> Water<br />
+        <input type="radio" name="q2" value="0" /> Hydrogen<br />
+      </div>
+
+      <div>
+        <p>3. Which part of the plant makes food?</p>
+        <input type="radio" name="q3" value="0" /> Roots<br />
+        <input type="radio" name="q3" value="0" /> Stem<br />
+        <input type="radio" name="q3" value="1" /> Leaves<br />
+      </div>
+
+      <button id="submitTest">Submit Test</button>
+      <p id="recommendation"></p>
+    </div>
+  </div>
+
+  <!-- MAIN CONTENT -->
   <main>
-    <h2>Key Concepts</h2>
+    <h2>Key Science Concepts</h2>
     <ul>
-      <li><strong>Photosynthesis:</strong> How plants make food using sunlight.</li>
-      <li><strong>States of Matter:</strong> Solid, Liquid, Gas - properties and changes.</li>
-      <li><strong>Electricity:</strong> Flow of current, circuits, and conductors.</li>
+      <li><strong>Photosynthesis:</strong> Plants make food using sunlight.</li>
+      <li><strong>States of Matter:</strong> Solid, Liquid, and Gas.</li>
+      <li><strong>Solar System:</strong> Planets orbit the sun in space.</li>
     </ul>
   </main>
 
   <footer>
-    <p>© 2025 EduHelp | Science is Life</p>
+    <p>© 2025 EduHelp | Science for All</p>
   </footer>
+
+  <script>
+    const submitBtn = document.getElementById("submitTest");
+    const result = document.getElementById("recommendation");
+
+    submitBtn.addEventListener("click", function () {
+      let score = 0;
+      for (let i = 1; i <= 3; i++) {
+        const selected = document.querySelector(`input[name="q${i}"]:checked`);
+        if (selected) {
+          score += parseInt(selected.value);
+        }
+      }
+
+      let level = "";
+      if (score <= 1) level = "Beginner";
+      else if (score === 2) level = "Moderate";
+      else level = "Advanced";
+
+      result.innerText = `You scored ${score}/3. We recommend the ${level} Course.`;
+      setTimeout(() => {
+        document.getElementById("testPopup").style.display = "none";
+      }, 2500);
+    });
+  </script>
 </body>
 </html>
